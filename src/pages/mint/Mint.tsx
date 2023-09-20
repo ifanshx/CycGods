@@ -67,7 +67,14 @@ const Mint = () => {
           <p className="text-2xl font-semibold text-black mt-2">1111 / 2000</p>
         </div>
       </div>
+
       <div className="p-4 mb-4 border border-[#FFDEB5] bg-white shadow-md rounded-lg">
+        <h2
+          className={` ${NewRocker.className} mb-4 text-2xl font-bold text-gray-900 text-center`}
+        >
+          Mint CycGods NFT
+        </h2>
+
         <div className="mb-4">
           <Image
             src="/assets/CycGods.gif"
@@ -77,12 +84,6 @@ const Mint = () => {
             className="mx-auto object-cover object-center bg-white rounded-2xl"
           />
         </div>
-
-        <h2
-          className={` ${NewRocker.className} text-2xl font-bold text-gray-900 text-center`}
-        >
-          Mint Your NFT
-        </h2>
 
         <div className="flex items-center justify-center space-x-4 mt-4">
           <button
@@ -95,7 +96,7 @@ const Mint = () => {
             readOnly
             type="number"
             value={mintAmount}
-            className="w-16 h-12 bg-gradient-to-br from-gray-300 to-white shadow-lg text-center text-xs font-semibold border border-gray-300 rounded-lg"
+            className="  w-16 h-12 bg-gradient-to-br from-gray-300 to-white shadow-lg text-center text-xs font-semibold border border-gray-300 rounded-lg"
           />
           <button
             onClick={handleIncrement}
@@ -104,10 +105,11 @@ const Mint = () => {
             +
           </button>
         </div>
-
-        <button className="w-full py-3 mt-4 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 focus:outline-none focus:ring focus:ring-offset-1 focus:ring-gray-900 text-sm">
-          Mint Now
-        </button>
+        <div className="flex items-center justify-center  mt-2">
+          <button className="w-60  py-3 mt-4 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 focus:outline-none focus:ring focus:ring-offset-1 focus:ring-gray-900 text-sm">
+            Mint Now
+          </button>
+        </div>
       </div>
     </>
   );

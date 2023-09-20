@@ -1,8 +1,40 @@
 import DocumentHead from "@/components/Molecules/DocumentHead";
+import { query } from "firebase/firestore";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 const LoginView = () => {
+  const [isLoading, setisLoading] = useState(false);
+  const [error, setError] = useState<string>("");
+  const { push, query } = useRouter();
+
+  const callbackUrl: any = query.callbackUrl || "/";
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: (event.target as any).email.value,
+        password: (event.target as any).password.value,
+        callbackUrl,
+      });
+
+      if (!res?.error) {
+        setisLoading(false);
+        push(callbackUrl);
+      } else {
+        setisLoading(false);
+        setError("Email or Password is incorrect");
+      }
+    } catch (error: any) {
+      setisLoading(false);
+      setError(" Email or Password is incorrect");
+    }
+  };
+
   // Function to handle login with Discord
   const handleDiscordLogin = () => {
     // Implement your Discord login logic here

@@ -10,6 +10,7 @@ import {
   CreditCardIcon,
   PencilIcon,
   UserIcon,
+  WalletIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { Menu, Popover, Transition } from "@headlessui/react";
@@ -155,13 +156,24 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                       </Menu.Item>
                       <Menu.Item>
                         <Link
+                          href={"/wallet"}
+                          className={
+                            "flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm transition-colors ease-in-out duration-300 items-center gap-2"
+                          }
+                        >
+                          <WalletIcon className={"w-4 h-4"} />
+                          Wallet
+                        </Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <Link
                           href={"/profile"}
                           className={
                             "flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm transition-colors ease-in-out duration-300 items-center gap-2"
                           }
                         >
-                          <PencilIcon className={"w-4 h-4"} />
-                          Edit
+                          <CogIcon className={"w-4 h-4"} />
+                          Setting
                         </Link>
                       </Menu.Item>
                       <Menu.Item>

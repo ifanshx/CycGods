@@ -111,7 +111,7 @@ const Gallery: React.FC = () => {
         </ul>
       </section>
       {/* Search Bar */}
-      <div className="flex p-2 border border-[#DFFE00] rounded-full flex-1 gap-x-4 self-stretch lg:gap-x-6 mb-3">
+      <div className="flex p-2 border-2 border-black rounded-full flex-1 gap-x-4 self-stretch lg:gap-x-6 mb-3">
         <form className="flex flex-1" action="#" method="GET">
           <label htmlFor="search-field" className="sr-only">
             CycGods #
@@ -146,7 +146,7 @@ const Gallery: React.FC = () => {
             Reset
           </button>
           <div className="flex items-center space-x-2">
-            <button className="flex items-center space-x-1 text-gray-600 text-[10px] md:text-sm lg:text-sm font-medium rounded-full border-2 border-[#DFFE00] px-1 md:px-2 lg:px-2 py-0.5 md:py-1 lg:py-1">
+            <button className="flex items-center  bg-[#DFFE00] space-x-1 text-gray-600 text-[10px] md:text-sm lg:text-sm font-medium rounded-full border-2 border-black px-1 md:px-2 lg:px-2 py-0.5 md:py-1 lg:py-1">
               <span>Background: Yellow</span>
               <XMarkIcon className="w-3 text-gray-600" />
             </button>
@@ -168,10 +168,10 @@ const Gallery: React.FC = () => {
           <aside className="w-full md:w-[300px] h-full bg-[#DFFE00] rounded-lg shadow-sm flex flex-col">
             <ul className="flex flex-1 flex-col  ">
               {Object.entries(rarityData).map(([category, items]) => (
-                <li key={category} className="bg-[#DFFE00]">
+                <li key={category} className="bg-[#DFFE00] ">
                   <button
                     onClick={() => handleCategoryClick(category)}
-                    className=" border border-b-gray-400 group flex gap-x-3 p-3 text-sm leading-6 font-semibold text-gray-400 hover:bg-gray-200 w-full"
+                    className=" border border-b-gray-400 group flex gap-x-3 p-3 text-sm leading-6 font-semibold text-black hover:bg-gray-200 w-full"
                   >
                     <span className="h-6 w-6">
                       <PlusIcon
@@ -208,7 +208,7 @@ const Gallery: React.FC = () => {
             </ul>
           </aside>
         </Transition>
-        <div className="p-4 flex border h-full border-[#DFFE00] bg-white shadow-md rounded-lg">
+        <div className="p-4 flex border h-full border-black bg-white shadow-md rounded-lg">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {items.map((item, index) => (
               <div className="cursor-pointer" key={index} onClick={openModal}>
@@ -301,7 +301,7 @@ const Gallery: React.FC = () => {
                         alt="{name}"
                         width={300}
                         height={300}
-                        className="w-full h-full rounded-2xl border-1 border-gray-200 shadow-sm"
+                        className="w-full h-full rounded-2xl border-2 border-gray-200 shadow-sm"
                       />
                     </div>
 

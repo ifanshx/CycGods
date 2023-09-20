@@ -27,7 +27,7 @@ export default function Home() {
         <h1
           className={` ${NewRocker.className} text-4xl font-bold text-gray-900`}
         >
-          Home
+          Dashboard
         </h1>
         <ul className="flex items-center gap-2 text-gray-500 text-sm">
           <li>
@@ -42,7 +42,7 @@ export default function Home() {
               Hi, {data && data.user.fullname}
             </li>
           ) : (
-            <li className={`${NewRocker.className} font-medium`}>Home</li>
+            <li className={`${NewRocker.className} font-medium`}>Dashboard</li>
           )}
         </ul>
       </section>

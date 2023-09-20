@@ -1,4 +1,5 @@
 import {
+  addDoc,
   collection,
   getDocs,
   getFirestore,
@@ -9,11 +10,29 @@ import app from "./init";
 
 const firestore = getFirestore(app);
 
+export async function signIn(userData: { email: string }) {
+  const q = query(
+    collection(firestore, "users"),
+    where("email", "==", userData.email)
+  );
+  const snapshot = await getDocs(q);
+  const data = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  if (data) {
+    return data[0];
+  } else {
+    return null;
+  }
+}
+
 export async function signUp(
   userData: {
     email: string;
     fullname: string;
     password: string;
+    role?: string;
   },
   callback: Function
 ) {
@@ -31,6 +50,13 @@ export async function signUp(
     console.log(data);
     callback({ status: false, message: "Email already exists" });
   } else {
-    callback({ status: true, message: "Registration Success" });
+    userData.role = "member";
+    await addDoc(collection(firestore, "user"), userData)
+      .then(() => {
+        callback({ status: true, message: "Registration Success" });
+      })
+      .catch((error) => {
+        callback({ status: false, message: error });
+      });
   }
 }

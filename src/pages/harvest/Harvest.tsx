@@ -40,19 +40,19 @@ const Harvest = () => {
 
       <div className="grid grid-cols-3 text-center lg:grid-cols-3 gap-6 mb-5 text-[12px]">
         <div
-          className={` ${NewRocker.className} border border-[#FFDEB5]  rounded-lg bg-white shadow-sm p-4 `}
+          className={` ${NewRocker.className} border border-black  rounded-lg bg-white shadow-sm p-4 `}
         >
           Your NFT :{" "}
           <p className=" text-[20px] lg:text-[40px] font-semibold  ">10</p>
         </div>
         <div
-          className={` ${NewRocker.className} border border-[#FFDEB5]  rounded-lg bg-white shadow-sm p-4 `}
+          className={` ${NewRocker.className} border border-black  rounded-lg bg-white shadow-sm p-4 `}
         >
           Your Staked :{" "}
           <p className="text-[20px] lg:text-[40px]  font-semibold  ">5</p>
         </div>
         <div
-          className={` ${NewRocker.className} border border-[#FFDEB5]  rounded-lg bg-white shadow-sm p-4 `}
+          className={` ${NewRocker.className} border border-black  rounded-lg bg-white shadow-sm p-4 `}
         >
           Total Earn :{" "}
           <p className=" text-[20px] lg:text-[40px]  font-semibold  ">
@@ -61,7 +61,7 @@ const Harvest = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 text-center gap-6 mb-5">
-        <div className="p-4 mb-5 border border-[#FFDEB5]  bg-white shadow-md rounded-lg">
+        <div className="p-4 mb-5 border border-black  bg-white shadow-md rounded-lg">
           <p
             className={` ${NewRocker.className}  text-[20px] font-semibold mb-4 `}
           >
@@ -71,7 +71,7 @@ const Harvest = () => {
             {/* Contoh */}
             {Array.from({ length: 5 }, (_, index) => (
               <div className="cursor-pointer " key={index}>
-                <div className="py-2 bg-[#FFDEB5] rounded-2xl md:rounded-3xl lg:rounded-3xl">
+                <div className="py-2 bg-[#DFFE00] rounded-2xl md:rounded-3xl lg:rounded-3xl">
                   <div className="overflow-hidden px-2 ">
                     <Image
                       src={`/assets/Cyc/${index + 3}.png`}
@@ -100,7 +100,7 @@ const Harvest = () => {
             {/* Contoh */}
           </div>
         </div>
-        <div className="p-4 mb-5  bg-white shadow-md rounded-lg">
+        <div className="p-4 mb-5  bg-white border border-black   shadow-md rounded-lg">
           <p
             className={` ${NewRocker.className} text-[20px] font-semibold mb-4 `}
           >
@@ -110,7 +110,7 @@ const Harvest = () => {
             {/* Contoh */}
             {Array.from({ length: 10 }, (_, index) => (
               <div className="cursor-pointer " key={index}>
-                <div className="py-2 bg-[#FFDEB5] rounded-2xl md:rounded-3xl lg:rounded-3xl">
+                <div className="py-2 bg-[#DFFE00] rounded-2xl md:rounded-3xl lg:rounded-3xl">
                   <div className="overflow-hidden px-2 ">
                     <Image
                       src={`/assets/Cyc/${index + 2}.png`}
