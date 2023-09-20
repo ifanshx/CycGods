@@ -46,8 +46,8 @@ const RegisterView: React.FC = () => {
         image="/assets/Logo.png"
       />
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded shadow-md w-96">
-          <h2 className="text-2xl font-semibold mb-4">Register</h2>
+        <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
+          <h2 className="text-3xl font-semibold mb-6 text-center">Register</h2>
           {error && <p className=" text-red-600 mb-10 ">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">

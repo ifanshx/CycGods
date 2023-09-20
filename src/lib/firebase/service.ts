@@ -21,7 +21,11 @@ export async function signIn(userData: { email: string }) {
     id: doc.id,
     ...doc.data(),
   }));
-  return data.length > 0 ? data[0] : null;
+  if (data) {
+    return data[0];
+  } else {
+    return null;
+  }
 }
 
 export async function signUp(
