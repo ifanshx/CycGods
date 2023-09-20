@@ -81,7 +81,7 @@ const LoginView = () => {
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
               >
-                Login
+                {isLoading ? "Loading.." : "Login"}
               </button>
             </div>
           </form>
