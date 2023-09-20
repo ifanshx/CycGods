@@ -48,7 +48,7 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
         <li className="flex items-center  gap-5 md:gap-8">
           <Menu as={"div"} className={"relative inline-block text-left"}>
             {data ? (
-              <li className="flex items-center gap-5 md:gap-8">
+              <div className="flex items-center gap-5 md:gap-8">
                 {/* <Popover className={"relative"}>
                   <Popover.Button
                     className={"outline-none cursor-pointer text-gray-700"}
@@ -190,7 +190,7 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </li>
+              </div>
             ) : (
               <button
                 className={

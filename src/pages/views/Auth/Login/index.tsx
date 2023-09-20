@@ -1,39 +1,43 @@
 import DocumentHead from "@/components/Molecules/DocumentHead";
-
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const LoginView = () => {
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
   const { push, query } = useRouter();
-
   const callbackUrl: any = query.callbackUrl || "/";
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError("");
-    setisLoading(true);
+    setIsLoading(true);
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
     try {
       const res = await signIn("credentials", {
         redirect: false,
-        email: event.target.email.value,
-        password: event.target.password.value,
+        email,
+        password,
         callbackUrl,
       });
+
       if (!res?.error) {
-        setisLoading(false);
+        setIsLoading(false);
         push(callbackUrl);
       } else {
-        setisLoading(false);
+        setIsLoading(false);
         setError("Email or Password is incorrect");
       }
-    } catch (error: any) {
-      setisLoading(false);
-      setError(" Email or Password is incorrect");
+    } catch (error) {
+      setIsLoading(false);
+      setError("Email or Password is incorrect");
     }
   };
 
@@ -50,8 +54,8 @@ const LoginView = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
           <h2 className="text-3xl font-semibold mb-6 text-center">Login</h2>
-          {error && <p className=" text-red-600 mb-10 ">{error}</p>}
-          <form onSubmit={handleSubmit} className="mb-6">
+          {error && <p className="text-red-600 mb-4">{error}</p>}
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700">
                 Email
@@ -61,7 +65,7 @@ const LoginView = () => {
                 id="email"
                 className="w-full mt-1 p-2 border rounded"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
               />
             </div>
             <div className="mb-4">
@@ -73,15 +77,16 @@ const LoginView = () => {
                 id="password"
                 className="w-full mt-1 p-2 border rounded"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
               />
             </div>
             <div className="mb-6">
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
+                disabled={isLoading}
               >
-                {isLoading ? "Loading.." : "Login"}
+                {isLoading ? "Loading..." : "Login"}
               </button>
             </div>
           </form>
@@ -89,7 +94,7 @@ const LoginView = () => {
           <div className="text-center">
             <Link href="/auth/register">
               <p className="text-blue-500 hover:underline">
-                Don&apos;t have an account yet? Register here.
+                Dont have an account yet? Register here.
               </p>
             </Link>
           </div>
