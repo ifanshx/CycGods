@@ -66,7 +66,7 @@ const LoginView = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
           <h2 className="text-3xl font-semibold mb-6 text-center">Login</h2>
-          <form className="mb-6">
+          <form onSubmit={handleSubmit} className="mb-6">
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700">
                 Email
