@@ -1,4 +1,4 @@
-import { signIn, signInWhitGoogle } from "@/lib/firebase/service";
+import { signIn, signInWithGoogle } from "@/lib/firebase/service";
 import { compare } from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
@@ -44,7 +44,7 @@ const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    jwt({ token, account, profile, user }: any) {
+    async jwt({ token, account, profile, user }: any) {
       if (account?.provider === "credentials") {
         token.email = user.email;
         token.fullname = user.fullname;
@@ -58,18 +58,15 @@ const authOptions: NextAuthOptions = {
           type: "google",
         };
 
-        await signInWhitGoogle(
-          data,
-          (result: { data: any; status: boolean; message: string }) => {
-            if (result.status) {
-              token.email = result.data.email;
-              token.fullname = result.data.fullname;
-              token.type = result.data.type;
-              token.image = result.data.image;
-              token.role = result.data.role;
-            }
+        await signInWithGoogle(data, (result: any) => {
+          if (result.status) {
+            token.email = result.data.email;
+            token.fullname = result.data.fullname;
+            token.type = result.data.type;
+            token.image = result.data.image;
+            token.role = result.data.role;
           }
-        );
+        });
       }
       return token;
     },

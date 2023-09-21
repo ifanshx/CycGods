@@ -1,5 +1,6 @@
 import DocumentHead from "@/components/Molecules/DocumentHead";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -47,12 +48,14 @@ const LoginView = () => {
         siteName="CycGods"
         image="/assets/Logo.png"
       />
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
-          <h2 className="text-3xl font-semibold mb-6 text-center">Login</h2>
+      <div className="flex items-center justify-center h-screen  ">
+        <div className="bg-white p-4 md:p-8 rounded shadow-md max-w-md w-full ">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4 md:mb-6 text-center">
+            Login
+          </h2>
           {error && <p className="text-red-600 mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-2 md:mb-4">
               <label htmlFor="email" className="block text-gray-700">
                 Email
               </label>
@@ -64,7 +67,7 @@ const LoginView = () => {
                 placeholder="Email"
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-2 md:mb-4">
               <label htmlFor="password" className="block text-gray-700">
                 Password
               </label>
@@ -76,7 +79,7 @@ const LoginView = () => {
                 placeholder="Password"
               />
             </div>
-            <div className="mb-2">
+            <div className="mb-4">
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
@@ -87,22 +90,52 @@ const LoginView = () => {
             </div>
           </form>
           <div className="mb-4 flex justify-center items-center text-center">
-            <p>-or-</p>
+            <div className="w-1/4 h-0.5 bg-gray-300"></div>
+            <p className="mx-3 text-gray-500">or</p>
+            <div className="w-1/4 h-0.5 bg-gray-300"></div>
           </div>
-          <div className="mb-4">
+          <div className="mb-4 flex flex-col md:flex-row justify-center items-center gap-2">
             <button
               onClick={() => signIn("google", { callbackUrl, redirect: false })}
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
+              className="w-full bg-blue-500 text-white py-2 md:py-4 rounded hover:bg-blue-600 focus:outline-none flex items-center justify-center"
               disabled={isLoading}
             >
-              {isLoading ? "Loading..." : "Sign In With Google"}
+              <div className="flex items-center gap-1">
+                <Image
+                  src="/assets/Logo/google.svg"
+                  alt="Google"
+                  width={20}
+                  height={20}
+                  className="mr-2"
+                />
+                <p className="font-semibold">
+                  {isLoading ? "Loading..." : "Sign In With Google"}
+                </p>
+              </div>
+            </button>
+            <button
+              onClick={() => signIn("google", { callbackUrl, redirect: false })}
+              className="w-full bg-blue-500 text-white py-2 md:py-4 rounded hover:bg-blue-600 focus:outline-none flex items-center justify-center"
+              disabled={isLoading}
+            >
+              <div className="flex items-center gap-1">
+                <Image
+                  src="/assets/Logo/google.svg"
+                  alt="Google"
+                  width={20}
+                  height={20}
+                  className="mr-2"
+                />
+                <p className="font-semibold">
+                  {isLoading ? "Loading..." : "Sign In With Wallet"}
+                </p>
+              </div>
             </button>
           </div>
           <div className="text-center">
             <Link href="/auth/register">
               <p className="text-blue-500 hover:underline">
-                Dont have an account yet? Register here.
+                Don&apos;t have an account yet? Register here.
               </p>
             </Link>
           </div>
