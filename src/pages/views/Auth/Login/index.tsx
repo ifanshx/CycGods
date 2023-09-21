@@ -2,7 +2,7 @@ import DocumentHead from "@/components/Molecules/DocumentHead";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,20 +11,16 @@ const LoginView = () => {
   const { push, query } = useRouter();
   const callbackUrl: any = query.callbackUrl || "/";
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     setError("");
     setIsLoading(true);
 
-    const formData = new FormData(event.target as HTMLFormElement);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
     try {
       const res = await signIn("credentials", {
         redirect: false,
-        email,
-        password,
+        email: event.target.email.value,
+        password: event.target.password.value,
         callbackUrl,
       });
 

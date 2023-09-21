@@ -53,11 +53,12 @@ export async function signUp(
   } else {
     userData.password = await bcrypt.hash(userData.password, 10);
     userData.role = "member";
-    try {
-      await addDoc(collection(firestore, "users"), userData);
-      callback({ status: true, message: "Registration Success" });
-    } catch (error) {
-      callback({ status: false, message: error });
-    }
+    await addDoc(collection(firestore, "users"), userData)
+      .then(() => {
+        callback({ status: true, message: "Registration Success" });
+      })
+      .catch((error) => {
+        callback({ status: false, message: error });
+      });
   }
 }
