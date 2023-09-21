@@ -114,15 +114,16 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                       "inline-flex w-full justify-center items-center gap-1"
                     }
                   >
-                    <Image
-                      src={"/assets/Cyc/1.png"}
-                      alt={"User"}
-                      width={32}
-                      height={32}
-                      className={
-                        "rounded-full mr-1 border-2 border-white shadow-sm"
-                      }
-                    />
+                    {data?.user?.image && (
+                      <img
+                        src={data.user.image || "/assets/Cyc/1.png"}
+                        alt={data.user.fullname}
+                        className={
+                          " w-10 h-10 rounded-full mr-1 border-2 border-white shadow-sm"
+                        }
+                      />
+                    )}
+
                     <span className="hidden md:block font-medium text-gray-700">
                       {data && data.user.fullname}
                     </span>

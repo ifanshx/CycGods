@@ -76,7 +76,7 @@ const LoginView = () => {
                 placeholder="Password"
               />
             </div>
-            <div className="mb-6">
+            <div className="mb-2">
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
@@ -86,7 +86,19 @@ const LoginView = () => {
               </button>
             </div>
           </form>
-
+          <div className="mb-4 flex justify-center items-center text-center">
+            <p>-or-</p>
+          </div>
+          <div className="mb-4">
+            <button
+              onClick={() => signIn("google", { callbackUrl, redirect: false })}
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none"
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : "Sign In With Google"}
+            </button>
+          </div>
           <div className="text-center">
             <Link href="/auth/register">
               <p className="text-blue-500 hover:underline">
