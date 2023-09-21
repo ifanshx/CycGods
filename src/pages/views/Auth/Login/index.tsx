@@ -1,4 +1,5 @@
 import DocumentHead from "@/components/Molecules/DocumentHead";
+import { WalletIcon } from "@heroicons/react/24/solid";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -114,18 +115,12 @@ const LoginView = () => {
               </div>
             </button>
             <button
-              onClick={() => signIn("google", { callbackUrl, redirect: false })}
+              // onClick={() => signIn("google", { callbackUrl, redirect: false })}
               className="w-full bg-blue-500 text-white py-2 md:py-4 rounded hover:bg-blue-600 focus:outline-none flex items-center justify-center"
               disabled={isLoading}
             >
               <div className="flex items-center gap-1">
-                <Image
-                  src="/assets/Logo/google.svg"
-                  alt="Google"
-                  width={20}
-                  height={20}
-                  className="mr-2"
-                />
+                <WalletIcon className=" w-[22px] h-[22px] mr-2 " />
                 <p className="font-semibold">
                   {isLoading ? "Loading..." : "Sign In With Wallet"}
                 </p>

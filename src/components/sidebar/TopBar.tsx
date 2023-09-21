@@ -95,11 +95,11 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                       </Menu.Item>
                       <Menu.Item>
                         <Link
-                          href="/profile"
+                          href="/setting"
                           className="flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm transition-colors ease-in-out duration-300 items-center gap-2"
                         >
                           <CogIcon className="w-4 h-4" />
-                          Settings
+                          Setting
                         </Link>
                       </Menu.Item>
                       <Menu.Item>
