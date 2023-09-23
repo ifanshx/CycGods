@@ -39,16 +39,16 @@ export default function App({
     [publicProvider()]
   );
 
-  const projectId = "YOUR_PROJECT_ID";
+  const projectId = "7e1cfd45b1d73fdb5867dbf0c724b095";
 
   const { wallets } = getDefaultWallets({
-    appName: "RainbowKit demo",
+    appName: "CycGods",
     projectId,
     chains,
   });
 
   const demoAppInfo = {
-    appName: "Rainbowkit Demo",
+    appName: "CycGods",
   };
 
   const connectors = connectorsForWallets([...wallets]);
