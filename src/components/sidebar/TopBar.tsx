@@ -1,22 +1,16 @@
 import { Dispatch, Fragment, SetStateAction } from "react";
 import {
   ArrowLeftOnRectangleIcon,
-  ArrowsPointingOutIcon,
   Bars3CenterLeftIcon,
-  BellIcon,
-  CheckIcon,
   ChevronDownIcon,
   CogIcon,
-  CreditCardIcon,
-  PencilIcon,
   UserIcon,
   WalletIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
-import Image from "next/image";
+import { useAccount, useDisconnect } from "wagmi";
 
 type Props = {
   showNav: boolean;
@@ -25,6 +19,7 @@ type Props = {
 
 export const TopBar = ({ showNav, setShowNav }: Props) => {
   const { data }: any = useSession();
+  const { disconnect } = useDisconnect();
 
   return (
     <section
@@ -46,12 +41,14 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                 <Menu as="div" className="relative inline-block text-left">
                   <Menu.Button className="inline-flex w-full justify-center items-center gap-2">
                     {data?.user?.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={data.user.image}
                         alt={data.user.fullname}
                         className="w-10 h-10 rounded-full mr-1 border-2 border-white shadow-sm"
                       />
                     ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src="/assets/Cyc/1.png"
                         alt={data.user.fullname}
@@ -60,7 +57,8 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                     )}
 
                     <span className="hidden md:block font-medium text-gray-700">
-                      {data && data.user.fullname}
+                      {data ? data.user.fullname : ""}
+                      {data?.user?.id}
                     </span>
                     <ChevronDownIcon className="w-4 h-4 text-gray-700" />
                   </Menu.Button>
@@ -104,7 +102,11 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
                       </Menu.Item>
                       <Menu.Item>
                         <button
-                          onClick={() => signOut()}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            disconnect();
+                            signOut();
+                          }}
                           className="flex hover:bg-orange-500 w-full hover:text-white text-gray-700 rounded p-2 text-sm transition-colors ease-in-out duration-300 items-center gap-2"
                         >
                           <ArrowLeftOnRectangleIcon className="w-4 h-4" />

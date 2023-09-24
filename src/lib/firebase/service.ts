@@ -103,3 +103,5 @@ export async function signInWithGoogle(userData: any, callback: any) {
       });
   }
 }
+
+// export async function signInWithWallet(userData: any, callback: any) {}

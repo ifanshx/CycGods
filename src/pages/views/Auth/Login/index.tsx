@@ -1,15 +1,14 @@
-import { ButtonConnect } from "@/components/ButtonConnect";
 import DocumentHead from "@/components/Molecules/DocumentHead";
-import { getAuthOptions } from "@/pages/api/auth/[...nextauth]";
-import { WalletIcon } from "@heroicons/react/24/solid";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
+import type { GetServerSideProps, NextPage } from "next";
+import { getServerSession } from "next-auth";
+import { getAuthOptions } from "@/pages/api/auth/[...nextauth]";
+import ButtonConnectWallet from "@/components/ButtonConnect";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   return {
@@ -32,7 +31,7 @@ const LoginView = () => {
     setIsLoading(true);
 
     try {
-      const res = await signIn("credentials", {
+      const res = await signIn("email", {
         redirect: false,
         email: event.target.email.value,
         password: event.target.password.value,
@@ -128,7 +127,7 @@ const LoginView = () => {
               </div>
             </button>
             <div className="w-full">
-              <ButtonConnect />
+              <ButtonConnectWallet />
             </div>
           </div>
           <div className="text-center">

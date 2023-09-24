@@ -47,10 +47,6 @@ export default function App({
     chains,
   });
 
-  const demoAppInfo = {
-    appName: "CycGods",
-  };
-
   const connectors = connectorsForWallets([...wallets]);
 
   const wagmiConfig = createConfig({
@@ -60,22 +56,12 @@ export default function App({
     webSocketPublicClient,
   });
 
-  const getSiweMessageOptions: GetSiweMessageOptions = () => ({
-    statement: "Sign in to the RainbowKit + SIWE example app",
-  });
-
   return (
     <SessionProvider refetchInterval={0} session={pageProps.session}>
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitSiweNextAuthProvider
-          getSiweMessageOptions={getSiweMessageOptions}
-        >
-          <RainbowKitProvider appInfo={demoAppInfo} chains={chains}>
-            <DefaultLayout>
-              <Component {...pageProps} />
-            </DefaultLayout>
-          </RainbowKitProvider>
-        </RainbowKitSiweNextAuthProvider>
+        <DefaultLayout>
+          <Component {...pageProps} />
+        </DefaultLayout>
       </WagmiConfig>
     </SessionProvider>
   );

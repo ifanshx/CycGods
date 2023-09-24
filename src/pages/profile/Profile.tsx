@@ -6,12 +6,12 @@ import { New_Rocker } from "next/font/google";
 
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useAccount } from "wagmi";
 
 const NewRocker = New_Rocker({ weight: "400", subsets: ["latin"] }); // Removed quotes around weight value
 
 const Profile = () => {
   const { data }: any = useSession();
-
   return (
     <>
       <DocumentHead
@@ -66,6 +66,14 @@ const Profile = () => {
             </label>
             <p className="mt-1 text-sm text-gray-600">
               {data ? data.user.fullname : ""}
+            </p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Address
+            </label>
+            <p className="mt-1 text-sm text-gray-600">
+              {data ? data.user.id : ""}
             </p>
           </div>
           <div>
