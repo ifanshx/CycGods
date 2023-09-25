@@ -68,6 +68,7 @@ const ButtonConnectWallet = () => {
             SignInWithWallet(e);
           }
         }}
+        disabled={isLoading}
       >
         <WalletIcon className="w-6 h-6 " />
         {isLoading
