@@ -70,7 +70,11 @@ const ButtonConnectWallet = () => {
         }}
       >
         <WalletIcon className="w-6 h-6 " />
-        {!isConnected ? <>Connect Wallet</> : <>Sign-in With Wallet</>}
+        {isLoading
+          ? "Loading..."
+          : !isConnected
+          ? "Connect Wallet"
+          : "Sign-in With Wallet"}
       </button>
     </>
   );
