@@ -18,7 +18,7 @@ type Props = {
 };
 
 export const TopBar = ({ showNav, setShowNav }: Props) => {
-  const { data }: any = useSession();
+  const { data: session, status }: any = useSession();
   const { disconnect } = useDisconnect();
 
   return (
@@ -36,29 +36,31 @@ export const TopBar = ({ showNav, setShowNav }: Props) => {
         </li>
         <li className="flex items-center gap-5 md:gap-8">
           <Menu as="div" className="relative inline-block text-left">
-            {data ? (
+            {session ? (
               <div className="flex items-center gap-5 md:gap-8">
                 <Menu as="div" className="relative inline-block text-left">
                   <Menu.Button className="inline-flex w-full justify-center items-center gap-2">
-                    {data?.user?.image ? (
+                    {session?.user?.image ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={data.user.image}
-                        alt={data.user.fullname}
+                        src={session.user.image}
+                        alt={session.user.fullname}
                         className="w-10 h-10 rounded-full mr-1 border-2 border-white shadow-sm"
                       />
                     ) : (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src="/assets/Cyc/1.png"
-                        alt={data.user.fullname}
+                        alt={session.user.fullname}
                         className="w-10 h-10 rounded-full mr-1 border-2 border-white shadow-sm"
                       />
                     )}
 
                     <span className="hidden md:block font-medium text-gray-700">
-                      {data ? data.user.fullname : ""}
-                      {data?.user?.id}
+                      {session.user.fullname ??
+                        session.user.id.slice(0, 4) +
+                          "..." +
+                          session.user.id.slice(session.user.id.length - 4)}
                     </span>
                     <ChevronDownIcon className="w-4 h-4 text-gray-700" />
                   </Menu.Button>

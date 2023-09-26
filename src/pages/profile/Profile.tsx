@@ -11,7 +11,8 @@ import { useAccount } from "wagmi";
 const NewRocker = New_Rocker({ weight: "400", subsets: ["latin"] }); // Removed quotes around weight value
 
 const Profile = () => {
-  const { data }: any = useSession();
+  const { data: session, status }: any = useSession();
+
   return (
     <>
       <DocumentHead
@@ -35,9 +36,9 @@ const Profile = () => {
           <li>
             <ChevronRightIcon className="w-3 h-3" />
           </li>
-          {data ? (
+          {session ? (
             <li className={`${NewRocker.className} font-medium`}>
-              Profile {data && data.user.fullname}
+              Profile {session && session.user.fullname}
             </li>
           ) : (
             <li className={`${NewRocker.className} font-medium`}>Profile</li>
@@ -65,7 +66,7 @@ const Profile = () => {
               User Name
             </label>
             <p className="mt-1 text-sm text-gray-600">
-              {data ? data.user.fullname : ""}
+              {session ? session.user.fullname : ""}
             </p>
           </div>
           <div>
@@ -73,7 +74,7 @@ const Profile = () => {
               Address
             </label>
             <p className="mt-1 text-sm text-gray-600">
-              {data ? data.user.id : ""}
+              {session ? session.user.id : ""}
             </p>
           </div>
           <div>
@@ -81,7 +82,7 @@ const Profile = () => {
               Email
             </label>
             <p className="mt-1 text-sm text-gray-600">
-              {data ? data.user.email : ""}
+              {session ? session.user.email : ""}
             </p>
           </div>
           {/* Tambahkan informasi profil lainnya di sini */}

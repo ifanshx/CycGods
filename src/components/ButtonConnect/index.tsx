@@ -16,9 +16,9 @@ const ButtonConnectWallet = () => {
     connector: new InjectedConnector(),
   });
   const { push, query } = useRouter();
+  const { data: session, status } = useSession();
 
-  const SignInWithWallet = async (event: any) => {
-    event.preventDefault();
+  const SignInWithWallet = async () => {
     setError("");
     setIsLoading(true);
     const callbackUrl: any = query.callbackUrl || "/";
@@ -56,6 +56,14 @@ const ButtonConnectWallet = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(isConnected);
+    if (isConnected && !session) {
+      SignInWithWallet();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
+
   return (
     <>
       <button
@@ -65,17 +73,13 @@ const ButtonConnectWallet = () => {
           if (!isConnected) {
             connect();
           } else {
-            SignInWithWallet(e);
+            SignInWithWallet();
           }
         }}
         disabled={isLoading}
       >
         <WalletIcon className="w-6 h-6 " />
-        {isLoading
-          ? "Loading..."
-          : !isConnected
-          ? "Connect Wallet"
-          : "Sign-in With Wallet"}
+        Sign-in With Wallet
       </button>
     </>
   );
